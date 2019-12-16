@@ -7,5 +7,14 @@
 </ion-header>
 
 <ion-content>
-  <canvas baseChart [datasets]="chartData" [labels]="chartLabels" [chartType]="chartType"></canvas>
+  <ion-item>
+    <ion-input type="text" [(ngModel)]="stock" placeholder="AAPL, MSFT..."></ion-input>
+    <ion-button slot="end" expand="full" (click)="getData()" [disabled]='stock === ""'>
+      <ion-icon slot="start" name="search"></ion-icon>
+      Search
+    </ion-button>
+  </ion-item>
+  <canvas baseChart [datasets]="chartData" [labels]="chartLabels" [chartType]="chartType"
+    [colors]="chartColors"></canvas>
+
 </ion-content>
