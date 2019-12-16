@@ -34,7 +34,7 @@ export class HomePage {
   chartColors: Color[] = [
     {
       borderColor: "#000000",
-      backgroundColor: "#ff00ff"
+      backgroundColor: "#00ff00"
     }
   ];
   chartType = "line";
@@ -59,6 +59,11 @@ export class HomePage {
         this.chartData[0].data.push(entry["close"]);
       }
     });
+  }
+
+  typeChanged(e) {
+    const on = e.detail.checked;
+    this.chartType = on ? "line" : "bar";
   }
 
 }

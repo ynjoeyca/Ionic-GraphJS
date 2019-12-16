@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Ionic Blank
+      Stock Market Graph
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -14,7 +14,27 @@
       Search
     </ion-button>
   </ion-item>
-  <canvas baseChart [datasets]="chartData" [labels]="chartLabels" [chartType]="chartType"
-    [colors]="chartColors"></canvas>
+  <canvas baseChart [datasets]="chartData" [labels]="chartLabels" [chartType]="chartType" [legend]="showLegend"
+    [options]="chartOptions" [colors]="chartColors"></canvas>
 
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Settings</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-label>Line Chart</ion-label>
+        <ion-toggle (ionChange)="typeChanged($event)" checked></ion-toggle>
+
+      </ion-item>
+      <ion-item>
+        <ion-label>Show Legend</ion-label>
+        <ion-toggle [(ngModel)]="showLegend"></ion-toggle>
+      </ion-item>
+      <ion-item>
+        <ion-label>Background Color</ion-label>
+        <ion-input type="text" [(ngModel)]="chartColors[0].backgroundColor"></ion-input>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
