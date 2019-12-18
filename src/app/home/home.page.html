@@ -7,8 +7,22 @@
 </ion-header>
 
 <ion-content>
+  <ion-list>
+    <ion-list-header>Select A Popular Stock!</ion-list-header>
+
+    <ion-item>
+      <ion-label>Stock</ion-label>
+      <ion-select placeholder="Select One" [(ngModel)]="stock" value="AAPL">
+        <ion-select-option value="AAPL">Apple Corporation</ion-select-option>
+        <ion-select-option value="MSFT">Microsoft</ion-select-option>
+        <ion-select-option value="HRS">Harris Corporation</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+  </ion-list>
+
   <ion-item>
-    <ion-input type="text" [(ngModel)]="stock" placeholder="AAPL, MSFT..."></ion-input>
+    <ion-input type="text" [(ngModel)]="stock" placeholder="AAPL, MSFT..." disabled></ion-input>
     <ion-button slot="end" expand="full" (click)="getData()" [disabled]='stock === ""'>
       <ion-icon slot="start" name="search"></ion-icon>
       Search
