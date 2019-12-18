@@ -13,9 +13,7 @@
     <ion-item>
       <ion-label>Stock</ion-label>
       <ion-select placeholder="Select One" [(ngModel)]="stock" value="AAPL">
-        <ion-select-option value="AAPL">Apple Corporation</ion-select-option>
-        <ion-select-option value="MSFT">Microsoft</ion-select-option>
-        <ion-select-option value="HRS">Harris Corporation</ion-select-option>
+        <ion-select-option *ngFor="let curStock of stockList" value={{curStock.symbol}}>{{curStock.name}}</ion-select-option>
       </ion-select>
     </ion-item>
 

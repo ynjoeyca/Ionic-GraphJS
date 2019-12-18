@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Color, Label } from 'ng2-charts';
 import { ChartDataSets } from 'chart.js';
 import { HttpClient } from '@angular/common/http';
@@ -8,12 +8,14 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
+export class HomePage implements OnInit {
 
   // Data
   chartData: ChartDataSets[] = [{ data: [], label: "Stock Price" }];
 
   chartLabels: Label[];
+
+  stockList: [];
 
   // Options
   chartOptions = {
@@ -41,11 +43,15 @@ export class HomePage {
   showLegend = false;
 
   // For search
-  stock = "AAPL";
+  stock: any;
   constructor(
     private http: HttpClient
   ) {
     this.getData();
+  }
+
+  ngOnInit() {
+    this.getStockList();
   }
 
   getData() {
@@ -61,9 +67,16 @@ export class HomePage {
     });
   }
 
-  typeChanged(e) {
-    const on = e.detail.checked;
-    this.chartType = on ? "line" : "bar";
-  }
+  getStockList() {
+  this.http.get("https://financialmodelingprep.com/api/v3/company/stock/list").subscribe(res => {
+    this.stockList = res["symbolsList"];
+    console.log(this.stockList)
+  })
+}
+
+typeChanged(e) {
+  const on = e.detail.checked;
+  this.chartType = on ? "line" : "bar";
+}
 
 }
